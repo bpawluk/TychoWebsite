@@ -1,21 +1,25 @@
-namespace TychoWebsite;
+using Tycho;
+using TychoWebsite.App;
+
+namespace TychoWebsite.WebApi;
 
 public static class Program
 {
-    public static void Main(string[] args)
+    public async static Task Main(string[] args)
     {
+        var tychoApp = await new AppModule().Build();
         WebApplication.CreateBuilder(args)
-                      .ConfigureServices()
+                      .ConfigureServices(tychoApp)
                       .SetupMiddleware()
                       .Run();
     }
 
-    private static WebApplication ConfigureServices(this WebApplicationBuilder builder)
+    private static WebApplication ConfigureServices(this WebApplicationBuilder builder, IModule tychoApp)
     {
+        builder.Services.AddSingleton(tychoApp);
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
-
         return builder.Build();
     }
 

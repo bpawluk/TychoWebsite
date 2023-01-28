@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TychoWebsite.Articles\TychoWebsite.Articles.csproj" />
+    <ProjectReference Include="..\TychoWebsite.Posts\TychoWebsite.Posts.csproj" />
+    <ProjectReference Include="..\TychoWebsite.Reactions\TychoWebsite.Reactions.csproj" />
+    <ProjectReference Include="..\TychoWebsite.Topics\TychoWebsite.Topics.csproj" />
+  </ItemGroup>
+
+</Project>
