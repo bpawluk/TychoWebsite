@@ -2,7 +2,10 @@
 using Tycho;
 using Tycho.Contract;
 using Tycho.Structure;
+using TychoWebsite.App.Contract;
 using TychoWebsite.App.Contract.Consumers;
+using TychoWebsite.App.Contract.Model;
+using TychoWebsite.App.Services;
 using TychoWebsite.Articles;
 using TychoWebsite.Posts;
 using TychoWebsite.Reactions;
@@ -12,7 +15,10 @@ namespace TychoWebsite.App;
 
 public sealed partial class AppModule : TychoModule
 {
-    protected override void DeclareIncomingMessages(IInboxDefinition module, IServiceProvider services) { }
+    protected override void DeclareIncomingMessages(IInboxDefinition module, IServiceProvider services) 
+    {
+        module.RespondsTo<GetServiceQuery, IService>(query => (services.GetRequiredService(query.ServiceType) as IService)!);
+    }
 
     protected override void DeclareOutgoingMessages(IOutboxDefinition module, IServiceProvider services) { }
 
@@ -24,5 +30,11 @@ public sealed partial class AppModule : TychoModule
               .AddSubmodule<TopicsModule>();
     }
 
-    protected override void RegisterServices(IServiceCollection services) { }
+    protected override void RegisterServices(IServiceCollection services) 
+    {
+        services.AddTransient<IArticlesService, ArticlesService>()
+                .AddTransient<ICommentsService, CommentsService>()
+                .AddTransient<IPostsService, PostsService>()
+                .AddTransient<IReactionsService, ReactionsService>();
+    }
 }
