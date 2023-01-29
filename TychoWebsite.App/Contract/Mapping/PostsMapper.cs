@@ -1,4 +1,8 @@
-﻿namespace TychoWebsite.App.Contract.Mapping;
+﻿using TychoWebsite.Posts.Contract.Model;
+using TychoWebsite.Reactions.Contract.Model;
+using TychoWebsite.Topics.Contract.Model;
+
+namespace TychoWebsite.App.Contract.Mapping;
 
 internal static class PostsMapper
 {

@@ -1,4 +1,7 @@
-﻿namespace TychoWebsite.App.Contract.Mapping;
+﻿using TychoWebsite.Articles.Contract.Model;
+using TychoWebsite.Reactions.Contract.Model;
+
+namespace TychoWebsite.App.Contract.Mapping;
 
 internal static class ArticlesMapper
 {

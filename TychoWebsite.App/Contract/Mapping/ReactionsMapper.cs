@@ -1,4 +1,8 @@
-﻿namespace TychoWebsite.App.Contract.Mapping;
+﻿using TychoWebsite.Articles.Contract;
+using TychoWebsite.Posts.Contract;
+using TychoWebsite.Reactions.Contract;
+
+namespace TychoWebsite.App.Contract.Mapping;
 
 internal class ReactionsMapper
 {

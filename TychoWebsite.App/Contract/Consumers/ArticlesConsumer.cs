@@ -1,5 +1,12 @@
 ﻿using Tycho.Contract;
 using TychoWebsite.App.Contract.Mapping;
+using TychoWebsite.Articles.Contract;
+using TychoWebsite.Articles.Contract.Model;
+using TychoWebsite.Reactions;
+using TychoWebsite.Reactions.Contract;
+using TychoWebsite.Reactions.Contract.Model;
+using TychoWebsite.Topics;
+using TychoWebsite.Topics.Contract;
 
 namespace TychoWebsite.App.Contract.Consumers;
 
