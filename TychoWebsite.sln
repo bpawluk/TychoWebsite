@@ -7,17 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TychoWebsite.WebApi", "Tych
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{55B382B8-24B2-4551-B05A-42790B2146DE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{19385B3D-E2BA-438E-B528-1D0FCE1E31B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TychoWebsite.App", "TychoWebsite.App\TychoWebsite.App.csproj", "{B13CF8F2-76DF-4F31-8B2D-6FB3D7B4D049}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TychoWebsite.App", "TychoWebsite.App\TychoWebsite.App.csproj", "{B13CF8F2-76DF-4F31-8B2D-6FB3D7B4D049}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TychoWebsite.Articles", "TychoWebsite.Articles\TychoWebsite.Articles.csproj", "{62891B53-9FCA-4F39-8A67-3C42F1474A3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TychoWebsite.Articles", "TychoWebsite.Articles\TychoWebsite.Articles.csproj", "{62891B53-9FCA-4F39-8A67-3C42F1474A3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TychoWebsite.Posts", "TychoWebsite.Posts\TychoWebsite.Posts.csproj", "{845CF959-FD05-4DE5-8B53-0670D7586F3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TychoWebsite.Posts", "TychoWebsite.Posts\TychoWebsite.Posts.csproj", "{845CF959-FD05-4DE5-8B53-0670D7586F3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TychoWebsite.Reactions", "TychoWebsite.Reactions\TychoWebsite.Reactions.csproj", "{5A8742BB-89E1-4BAB-BD6B-4F5B3A13AEEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TychoWebsite.Reactions", "TychoWebsite.Reactions\TychoWebsite.Reactions.csproj", "{5A8742BB-89E1-4BAB-BD6B-4F5B3A13AEEA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TychoWebsite.Topics", "TychoWebsite.Topics\TychoWebsite.Topics.csproj", "{79983971-9A9A-46BA-B278-0B91813A1E66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TychoWebsite.Topics", "TychoWebsite.Topics\TychoWebsite.Topics.csproj", "{79983971-9A9A-46BA-B278-0B91813A1E66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
