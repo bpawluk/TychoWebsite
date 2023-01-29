@@ -13,7 +13,8 @@ public sealed class ReactionsModule : TychoModule
     protected override void DeclareIncomingMessages(IInboxDefinition module, IServiceProvider services) 
     {
         module.Executes<AddReactionCommand, AddReactionCommandHandler>()
-              .RespondsTo<GetScoreQuery, Score, GetScoreQueryHandler>();
+              .RespondsTo<GetScoreQuery, Score, GetScoreQueryHandler>()
+              .RespondsTo<GetScoresQuery, IEnumerable<Score>, GetScoresQueryHandler>();
     }
 
     protected override void DeclareOutgoingMessages(IOutboxDefinition module, IServiceProvider services) { }

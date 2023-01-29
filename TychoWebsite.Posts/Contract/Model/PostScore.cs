@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace TychoWebsite.Posts.Contract.Model;
 
-namespace TychoWebsite.Posts.Contract.Model;
-internal class PostScore
+public class PostScore
 {
 }
