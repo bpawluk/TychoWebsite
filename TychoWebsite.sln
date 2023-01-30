@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TychoWebsite.Reactions", "T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TychoWebsite.Topics", "TychoWebsite.Topics\TychoWebsite.Topics.csproj", "{79983971-9A9A-46BA-B278-0B91813A1E66}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TychoWebsite.Shared", "TychoWebsite.Shared\TychoWebsite.Shared.csproj", "{33962756-9D09-43F3-9DE9-FCF7778D789A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{79983971-9A9A-46BA-B278-0B91813A1E66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79983971-9A9A-46BA-B278-0B91813A1E66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79983971-9A9A-46BA-B278-0B91813A1E66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33962756-9D09-43F3-9DE9-FCF7778D789A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33962756-9D09-43F3-9DE9-FCF7778D789A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33962756-9D09-43F3-9DE9-FCF7778D789A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33962756-9D09-43F3-9DE9-FCF7778D789A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

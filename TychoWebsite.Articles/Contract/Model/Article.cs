@@ -1,5 +1,15 @@
-﻿namespace TychoWebsite.Articles.Contract.Model;
+﻿using TychoWebsite.Shared.Core;
 
-public class Article
-{
-}
+namespace TychoWebsite.Articles.Contract.Model;
+
+public record Article(
+    string Id,
+    string Title,
+    string Lead,
+    string Body,
+    Author Author,
+    ArticleScore Score,
+    DateTime PublishingDate,
+    List<string> Tags,
+    bool IsPublished,
+    bool IsArchived) : IEntity;

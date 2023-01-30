@@ -1,6 +1,4 @@
 using TychoWebsite.App;
-using TychoWebsite.App.Contract.Model;
-using TychoWebsite.App.Extensions;
 
 namespace TychoWebsite.WebApi;
 
@@ -18,10 +16,6 @@ public static class Program
     {
         var tychoApp = await new AppModule().Build();
         builder.Services.AddSingleton(tychoApp);
-        builder.Services.AddSingleton(await tychoApp.GetService<IArticlesService>());
-        builder.Services.AddSingleton(await tychoApp.GetService<ICommentsService>());
-        builder.Services.AddSingleton(await tychoApp.GetService<IPostsService>());
-        builder.Services.AddSingleton(await tychoApp.GetService<IReactionsService>());
         return builder;
     }
 

@@ -5,6 +5,9 @@ using Tycho.Structure;
 using TychoWebsite.Articles.Contract;
 using TychoWebsite.Articles.Contract.Handlers;
 using TychoWebsite.Articles.Contract.Model;
+using TychoWebsite.Articles.Core.Ports;
+using TychoWebsite.Articles.External;
+using TychoWebsite.Articles.Persistence;
 
 namespace TychoWebsite.Articles;
 
@@ -25,5 +28,10 @@ public sealed class ArticlesModule : TychoModule
 
     protected override void IncludeSubmodules(ISubstructureDefinition module, IServiceProvider services) { }
 
-    protected override void RegisterServices(IServiceCollection services) { }
+    protected override void RegisterServices(IServiceCollection services) 
+    {
+        services.AddTransient<IArticleScoreProvider, ArticleScoreProvider>()
+                .AddTransient<IAuthorInfoProvider, AuthorInfoProvider>()
+                .AddSingleton<IArticlesRepository, ArticlesRepository>();
+    }
 }

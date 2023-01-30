@@ -2,8 +2,10 @@
 
 namespace TychoWebsite.Articles.Contract.Model;
 
-public record ArticleSummary(
+public record NewArticle(
     string Id,
     string Title,
     string Lead,
-    DateTime PublishingDate) : IEntity;
+    string Body,
+    string Author,
+    List<string> Tags) : IEntity;

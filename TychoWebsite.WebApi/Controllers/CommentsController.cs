@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TychoWebsite.App.Contract.Model;
 using TychoWebsite.Posts.Contract.Model;
 
 namespace TychoWebsite.WebApi.Controllers;
@@ -8,13 +7,6 @@ namespace TychoWebsite.WebApi.Controllers;
 [Route("api/posts/{postId}/comments")]
 public class CommentsController
 {
-    private readonly ICommentsService _commentsService;
-
-    public CommentsController(ICommentsService commentsService) 
-    { 
-        _commentsService = commentsService;
-    }
-
     [HttpGet]
     public IEnumerable<Comment> GetComments(string postId)
     {

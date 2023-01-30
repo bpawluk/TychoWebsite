@@ -7,6 +7,6 @@ internal static class ArticlesMapper
 {
     public static ArticleScore MapResponse(Score response)
     {
-        return new();
+        return new(int.MaxValue);
     }
 }

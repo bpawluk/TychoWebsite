@@ -1,5 +1,3 @@
 ﻿namespace TychoWebsite.Articles.Contract.Model;
 
-public class ArticleScore
-{
-}
+public record ArticleScore(int Value);
