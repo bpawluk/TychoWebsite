@@ -29,7 +29,7 @@ internal class ArticlesRepository : RepositoryBase<NewArticle, ArticleEntity, Ar
 
     protected override async Task<Article> MapToModel(ArticleEntity entity, CancellationToken token)
     {
-        var author = await _authorProvider.GetInfo(entity.Author, token);
+        var author = await _authorProvider.GetInfo(entity.AuthorId, token);
         var score = await _articleScoreProvider.GetScore(entity.Id, token);
         return new Article(
             entity.Id,
@@ -40,8 +40,7 @@ internal class ArticlesRepository : RepositoryBase<NewArticle, ArticleEntity, Ar
             score,
             entity.PublishingDate,
             entity.Tags,
-            entity.IsPublished,
-            entity.IsArchived);
+            entity.IsPublished);
     }
 
     protected override Task<ArticleEntity> MapToEntity(NewArticle model, CancellationToken token)
@@ -52,9 +51,10 @@ internal class ArticlesRepository : RepositoryBase<NewArticle, ArticleEntity, Ar
             Title = model.Title,
             Lead = model.Lead,
             Body = model.Body,
-            Author = model.Author,
+            AuthorId = model.AuthorId,
             PublishingDate = DateTime.UtcNow,
             Tags = model.Tags,
+            IsPublished = true,
             IsArchived = false
         });
     }

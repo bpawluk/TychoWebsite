@@ -4,8 +4,8 @@ namespace TychoWebsite.Articles.Contract.Model;
 
 public record NewArticle(
     string Id,
+    string AuthorId,
     string Title,
     string Lead,
     string Body,
-    string Author,
     List<string> Tags) : IEntity;

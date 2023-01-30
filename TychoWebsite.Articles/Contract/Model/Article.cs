@@ -11,5 +11,4 @@ public record Article(
     ArticleScore Score,
     DateTime PublishingDate,
     List<string> Tags,
-    bool IsPublished,
-    bool IsArchived) : IEntity;
+    bool IsPublished) : IEntity;
