@@ -1,5 +1,5 @@
 ﻿using TychoWebsite.Articles.Contract.Model;
-using TychoWebsite.Articles.Core.Ports;
+using TychoWebsite.Articles.Core;
 using TychoWebsite.Articles.Persistence.Entities;
 using TychoWebsite.Shared.Persistence;
 

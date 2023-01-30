@@ -5,7 +5,7 @@ using Tycho.Structure;
 using TychoWebsite.Articles.Contract;
 using TychoWebsite.Articles.Contract.Handlers;
 using TychoWebsite.Articles.Contract.Model;
-using TychoWebsite.Articles.Core.Ports;
+using TychoWebsite.Articles.Core;
 using TychoWebsite.Articles.External;
 using TychoWebsite.Articles.Persistence;
 

@@ -1,6 +1,6 @@
 ﻿using Tycho;
 using Tycho.Messaging.Handlers;
-using TychoWebsite.Articles.Core.Ports;
+using TychoWebsite.Articles.Core;
 
 namespace TychoWebsite.Articles.Contract.Handlers;
 

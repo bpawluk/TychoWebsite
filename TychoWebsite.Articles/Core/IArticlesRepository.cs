@@ -1,6 +1,6 @@
 ﻿using TychoWebsite.Articles.Contract.Model;
 
-namespace TychoWebsite.Articles.Core.Ports;
+namespace TychoWebsite.Articles.Core;
 
 internal interface IArticlesRepository
 {
