@@ -8,19 +8,14 @@ namespace TychoWebsite.WebApi.Controllers;
 
 [ApiController]
 [Route("api/articles")]
-public class ArticlesController : Controller
+public class ArticlesController : TychoController
 {
-    private readonly IModule _tychoApp;
-
-    public ArticlesController(IModule tychoApp)
-    {
-        _tychoApp = tychoApp;
-    }
+    public ArticlesController(IModule tychoApp) : base(tychoApp) { }
 
     [HttpGet]
     public async Task<IEnumerable<ArticleSummary>> GetArticles()
     {
-        return await _tychoApp.Execute<GetArticlesQuery, IEnumerable<ArticleSummary>>(new());
+        return await _app.Execute<GetArticlesQuery, IEnumerable<ArticleSummary>>(new());
     }
 
     [HttpGet]
@@ -29,7 +24,7 @@ public class ArticlesController : Controller
     {
         try
         {
-            return await _tychoApp.Execute<GetArticleQuery, Article>(new(articleId));
+            return await _app.Execute<GetArticleQuery, Article>(new(articleId));
         }
         catch (DocumentNotFoundException)
         {
@@ -41,7 +36,7 @@ public class ArticlesController : Controller
     [Route("publish")]
     public async Task<IActionResult> PublishArticle(NewArticle article)
     {
-        await _tychoApp.Execute<PublishArticleCommand>(new(article));
+        await _app.Execute<PublishArticleCommand>(new(article));
         return Ok();
     }
 }
