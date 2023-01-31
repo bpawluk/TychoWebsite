@@ -11,7 +11,7 @@ internal static class TopicsMapper
         return new();
     }
 
-    public static GetTopicQuery MapQuery(GetPostingTopicQuery queryData)
+    public static GetTopicQuery MapQuery(GetPostingTopicsQuery queryData)
     {
         return new();
     }  

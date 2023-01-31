@@ -10,4 +10,8 @@
     <PackageReference Include="Tycho" Version="1.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TychoWebsite.Shared\TychoWebsite.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

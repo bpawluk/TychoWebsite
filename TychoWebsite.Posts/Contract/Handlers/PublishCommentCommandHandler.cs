@@ -1,5 +1,4 @@
 ﻿using Tycho.Messaging.Handlers;
-using TychoWebsite.Posts.Contract;
 
 namespace TychoWebsite.Posts.Contract.Handlers;
 

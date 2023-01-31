@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Tycho;
-using TychoWebsite.Posts.Contract.Model;
+using TychoWebsite.Posts.Contract.Model.Comments;
 
 namespace TychoWebsite.WebApi.Controllers;
 

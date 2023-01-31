@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Tycho;
-using TychoWebsite.Posts.Contract.Model;
+using TychoWebsite.Posts.Contract;
+using TychoWebsite.Posts.Contract.Model.Posts;
 
 namespace TychoWebsite.WebApi.Controllers;
 
@@ -11,15 +12,16 @@ public class PostsController : TychoController
     public PostsController(IModule tychoApp) : base(tychoApp) { }
 
     [HttpGet]
-    public IEnumerable<Post> GetPosts()
+    public async Task<IEnumerable<Post>> GetPosts([FromQuery] string? topicId = null, [FromQuery] string[]? tags = null)
     {
-        return Enumerable.Empty<Post>();
+        return await _app.Execute<GetPostsQuery, IEnumerable<Post>>(new(topicId, tags));
     }
 
     [HttpPost]
     [Route("publish")]
-    public IActionResult PublishPost()
+    public async Task<IActionResult> PublishPost(NewPost post)
     {
-        return new OkResult();
+        await _app.Execute<PublishPostCommand>(new(post));
+        return Ok();
     }
 }

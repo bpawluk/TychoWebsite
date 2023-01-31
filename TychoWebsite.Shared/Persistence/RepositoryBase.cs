@@ -26,10 +26,15 @@ public abstract class RepositoryBase<InputModel, DbEntity, OutputModel>
 
     protected abstract Task<DbEntity> MapToEntity(InputModel model, CancellationToken token);
 
+    protected virtual async Task<IEnumerable<OutputModel>> MapAllToModel(IEnumerable<DbEntity> entities, CancellationToken token)
+    {
+        return await Task.WhenAll(entities.Select(async entity => await MapToModel(entity, token)));
+    }
+
     public async Task<IEnumerable<OutputModel>> GetAll(CancellationToken token)
     {
         var entities = await GetAllEntities(token);
-        return await Task.WhenAll(entities.Select(async entity => await MapToModel(entity, token)));
+        return await MapAllToModel(entities, token);
     }
 
     public async Task<OutputModel> GetById(string id, CancellationToken token)
@@ -46,14 +51,26 @@ public abstract class RepositoryBase<InputModel, DbEntity, OutputModel>
 
     protected async Task<IEnumerable<DbEntity>> GetAllEntities(CancellationToken token)
     {
-        return (await _collection.FindAsync(NotDeleted, cancellationToken: token)).ToEnumerable(cancellationToken: token);
+        return (await _collection.FindAsync(NotDeleted, cancellationToken: token)).ToEnumerable(token);
+    }
+
+    protected async Task<IEnumerable<DbEntity>> FindEntities(FilterDefinition<DbEntity> filter, CancellationToken token)
+    {
+        return (await _collection.FindAsync(filter & NotDeleted, cancellationToken: token)).ToEnumerable(token);
     }
 
     protected async Task<DbEntity> GetEntityById(string id, CancellationToken token)
     {
         var filter = Builders<DbEntity>.Filter.Eq(entity => entity.Id, id) & NotDeleted;
-        var entity = (await _collection.FindAsync(filter, cancellationToken: token)).SingleOrDefault(cancellationToken: token);
+        var entity = (await _collection.FindAsync(filter, cancellationToken: token)).SingleOrDefault(token);
         if (entity is null) throw new DocumentNotFoundException($"There is no document with the given id ({id})");
         return entity;
-    } 
+    }
+
+    protected async Task<DbEntity> FindEntity(FilterDefinition<DbEntity> filter, CancellationToken token)
+    {
+        var entity = (await _collection.FindAsync(filter & NotDeleted, cancellationToken: token)).SingleOrDefault(token);
+        if (entity is null) throw new DocumentNotFoundException($"There is no document that satisfies the query");
+        return entity;
+    }
 }

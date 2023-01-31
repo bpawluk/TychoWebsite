@@ -1,6 +1,5 @@
 ﻿using Tycho.Messaging.Handlers;
-using TychoWebsite.Posts.Contract;
-using TychoWebsite.Posts.Contract.Model;
+using TychoWebsite.Posts.Contract.Model.Comments;
 
 namespace TychoWebsite.Posts.Contract.Handlers;
 

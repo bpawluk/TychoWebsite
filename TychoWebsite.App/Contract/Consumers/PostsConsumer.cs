@@ -1,7 +1,8 @@
 ﻿using Tycho.Contract;
 using TychoWebsite.App.Contract.Mapping;
 using TychoWebsite.Posts.Contract;
-using TychoWebsite.Posts.Contract.Model;
+using TychoWebsite.Posts.Contract.Model.Comments;
+using TychoWebsite.Posts.Contract.Model.Posts;
 using TychoWebsite.Reactions;
 using TychoWebsite.Reactions.Contract;
 using TychoWebsite.Reactions.Contract.Model;
@@ -15,7 +16,7 @@ internal static class PostsConsumer
 {
     public static void Consume(IOutboxConsumer module)
     {
-        module.Forward<GetPostingTopicQuery, PostingTopic, GetTopicQuery, Topic, TopicsModule>
+        module.Forward<GetPostingTopicsQuery, IEnumerable<PostingTopic>, GetTopicQuery, Topic, TopicsModule>
             (TopicsMapper.MapQuery, PostsMapper.MapResponse);
 
         module.Forward<GetPostsScoresQuery, IEnumerable<PostScore>, GetScoresQuery, IEnumerable<Score>, ReactionsModule>

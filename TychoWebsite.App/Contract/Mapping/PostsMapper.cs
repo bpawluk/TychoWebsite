@@ -1,4 +1,5 @@
-﻿using TychoWebsite.Posts.Contract.Model;
+﻿using TychoWebsite.Posts.Contract.Model.Comments;
+using TychoWebsite.Posts.Contract.Model.Posts;
 using TychoWebsite.Reactions.Contract.Model;
 using TychoWebsite.Topics.Contract.Model;
 
@@ -16,8 +17,8 @@ internal static class PostsMapper
         return Enumerable.Empty<CommentScore>();
     }
 
-    public static PostingTopic MapResponse(Topic response)
+    public static IEnumerable<PostingTopic> MapResponse(Topic response)
     {
-        return new();
+        return Enumerable.Empty<PostingTopic>();
     }
 }
