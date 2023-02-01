@@ -16,7 +16,7 @@ internal static class PostsConsumer
 {
     public static void Consume(IOutboxConsumer module)
     {
-        module.Forward<GetPostingTopicsQuery, IEnumerable<PostingTopic>, GetTopicQuery, Topic, TopicsModule>
+        module.Forward<GetPostingTopicsQuery, IEnumerable<PostingTopic>, GetTopicsQuery, IEnumerable<Topic>, TopicsModule>
             (TopicsMapper.MapQuery, PostsMapper.MapResponse);
 
         module.Forward<GetPostsScoresQuery, IEnumerable<PostScore>, GetScoresQuery, IEnumerable<Score>, ReactionsModule>

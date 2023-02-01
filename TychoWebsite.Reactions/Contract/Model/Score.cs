@@ -1,5 +1,5 @@
-﻿namespace TychoWebsite.Reactions.Contract.Model;
+﻿using TychoWebsite.Shared.Core;
 
-public class Score
-{
-}
+namespace TychoWebsite.Reactions.Contract.Model;
+
+public record Score(string Id, int Value) : IEntity;

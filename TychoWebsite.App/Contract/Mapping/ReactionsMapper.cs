@@ -8,16 +8,16 @@ internal class ReactionsMapper
 {
     public static GetScoreQuery MapQuery(GetArticleScoreQuery queryData)
     {
-        return new();
+        return new(queryData.ArticleId);
     }
 
     public static GetScoresQuery MapQuery(GetCommentsScoresQuery queryData)
     {
-        return new();
+        return new(queryData.CommentIds);
     }
 
     public static GetScoresQuery MapQuery(GetPostsScoresQuery queryData)
     {
-        return new();
+        return new(queryData.PostIds);
     }
 }

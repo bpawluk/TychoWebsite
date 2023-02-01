@@ -5,7 +5,6 @@ namespace TychoWebsite.Articles.Persistence.Entities;
 
 internal class AuthorEntity
 {
-    [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string Id { get; set; } = null!;
 

@@ -5,7 +5,6 @@ namespace TychoWebsite.Posts.Persistence.Entities;
 
 internal class PosterEntity
 {
-    [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string Id { get; set; } = null!;
 

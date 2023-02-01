@@ -5,6 +5,8 @@ using Tycho.Structure;
 using TychoWebsite.Reactions.Contract;
 using TychoWebsite.Reactions.Contract.Handlers;
 using TychoWebsite.Reactions.Contract.Model;
+using TychoWebsite.Reactions.Core;
+using TychoWebsite.Topics.Persistence;
 
 namespace TychoWebsite.Reactions;
 
@@ -21,5 +23,8 @@ public sealed class ReactionsModule : TychoModule
 
     protected override void IncludeSubmodules(ISubstructureDefinition module, IServiceProvider services) { }
 
-    protected override void RegisterServices(IServiceCollection services) { }
+    protected override void RegisterServices(IServiceCollection services) 
+    {
+        services.AddSingleton<IReactionsRepository, ReactionsRepository>();
+    }
 }

@@ -8,11 +8,11 @@ internal static class TopicsMapper
 {
     public static CreateTopicCommand MapCommand(CreateArticleTopicCommand commandData)
     {
-        return new();
+        return new(new(commandData.ArticleId, commandData.Title));
     }
 
-    public static GetTopicQuery MapQuery(GetPostingTopicsQuery queryData)
+    public static GetTopicsQuery MapQuery(GetPostingTopicsQuery queryData)
     {
-        return new();
+        return new(queryData.TopicIds);
     }  
 }

@@ -9,16 +9,16 @@ internal static class PostsMapper
 {
     public static IEnumerable<PostScore> MapToPostScore(IEnumerable<Score> response)
     {
-        return Enumerable.Empty<PostScore>();
+        return response.Select(score => new PostScore(score.Id, score.Value));
     }
 
     public static IEnumerable<CommentScore> MapToCommentScore(IEnumerable<Score> response)
     {
-        return Enumerable.Empty<CommentScore>();
+        return response.Select(score => new CommentScore(score.Value));
     }
 
-    public static IEnumerable<PostingTopic> MapResponse(Topic response)
+    public static IEnumerable<PostingTopic> MapResponse(IEnumerable<Topic> response)
     {
-        return Enumerable.Empty<PostingTopic>();
+        return response.Select(topic => new PostingTopic(topic.Id, topic.Name, topic.Tags));
     }
 }

@@ -16,7 +16,8 @@ public sealed partial class AppModule : TychoModule
     protected override void DeclareIncomingMessages(IInboxDefinition module, IServiceProvider services) 
     {
         module.ForwardArticlesModuleMessages()
-              .ForwardPostsModuleMessages();
+              .ForwardPostsModuleMessages()
+              .ForwardReactionsModuleMessages();
     }
 
     protected override void DeclareOutgoingMessages(IOutboxDefinition module, IServiceProvider services) { }
