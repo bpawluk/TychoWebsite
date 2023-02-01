@@ -1,5 +1,4 @@
 ﻿using Tycho.Messaging.Payload;
-using TychoWebsite.Posts.Contract.Model;
 using TychoWebsite.Posts.Contract.Model.Comments;
 using TychoWebsite.Posts.Contract.Model.Posts;
 

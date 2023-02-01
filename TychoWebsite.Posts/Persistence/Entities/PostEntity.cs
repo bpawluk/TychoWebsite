@@ -10,7 +10,7 @@ internal class PostEntity : IDatabaseEntity
     [BsonRepresentation(BsonType.ObjectId)]
     public string Id { get; set; } = null!;
 
-    public string AuthorId { get; set; } = null!;
+    public PosterEntity Author { get; set; } = null!;
 
     public string? TopicId { get; set; }
 

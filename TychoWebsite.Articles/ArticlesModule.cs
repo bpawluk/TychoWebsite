@@ -31,7 +31,6 @@ public sealed class ArticlesModule : TychoModule
     protected override void RegisterServices(IServiceCollection services) 
     {
         services.AddTransient<IArticleScoreProvider, ArticleScoreProvider>()
-                .AddTransient<IAuthorInfoProvider, AuthorInfoProvider>()
                 .AddSingleton<IArticlesRepository, ArticlesRepository>();
     }
 }

@@ -1,6 +1,5 @@
 ﻿using MongoDB.Driver;
 using TychoWebsite.Posts.Contract.Model.Posts;
-using TychoWebsite.Posts.Core;
 using TychoWebsite.Posts.Core.Ports;
 using TychoWebsite.Posts.Persistence.Entities;
 using TychoWebsite.Shared.Persistence;
@@ -9,14 +8,12 @@ namespace TychoWebsite.Posts.Persistence;
 
 internal class PostsRepository : RepositoryBase<NewPost, PostEntity, Post>, IPostsRepository
 {
-    private readonly IPosterInfoProvider _posterProvider;
     private readonly IPostScoreProvider _scoreProvider;
     private readonly IPostingTopicProvider _topicProvider;
 
-    public PostsRepository(IPosterInfoProvider posterProvider, IPostScoreProvider scoreProvider, IPostingTopicProvider topicProvider)
+    public PostsRepository(IPostScoreProvider scoreProvider, IPostingTopicProvider topicProvider)
         : base(new RepositorySettings(@"mongodb://localhost:27017", "postsModule", "posts"))
     {
-        _posterProvider = posterProvider;
         _scoreProvider = scoreProvider;
         _topicProvider = topicProvider;
     }
@@ -37,7 +34,7 @@ internal class PostsRepository : RepositoryBase<NewPost, PostEntity, Post>, IPos
         return Task.FromResult(new PostEntity()
         {
             Id = model.Id,
-            AuthorId = model.AuthorId,
+            Author = new() { Id = model.Author.Id, Name = model.Author.Name },
             TopicId = model.TopicId,
             Content = model.Content,
             PublishingDate = DateTime.UtcNow,
@@ -48,13 +45,12 @@ internal class PostsRepository : RepositoryBase<NewPost, PostEntity, Post>, IPos
 
     protected override async Task<Post> MapToModel(PostEntity entity, CancellationToken token)
     {
-        var poster = await _posterProvider.GetInfo(entity.AuthorId, token);
         var score = await _scoreProvider.GetScore(entity.Id, token);
         var topic = entity.TopicId is null ? null : await _topicProvider.GetTopic(entity.TopicId, token);
         return new Post(
             entity.Id,
             entity.Content,
-            poster,
+            new(entity.Author.Id, entity.Author.Name),
             score,
             entity.PublishingDate,
             entity.Tags,
@@ -65,9 +61,6 @@ internal class PostsRepository : RepositoryBase<NewPost, PostEntity, Post>, IPos
     {
         entities = entities.ToList();
 
-        var posterIds = entities.Select(entity => entity.AuthorId).Distinct();
-        var posters = await _posterProvider.GetBatchInfo(posterIds, token);
-
         var entityIds = entities.Select(entity => entity.Id);
         var scores = await _scoreProvider.GetScores(entityIds, token);
 
@@ -77,7 +70,7 @@ internal class PostsRepository : RepositoryBase<NewPost, PostEntity, Post>, IPos
         return entities.Select(entity => new Post(
             entity.Id,
             entity.Content,
-            posters.Single(poster => poster.Id == entity.AuthorId),
+            new(entity.Author.Id, entity.Author.Name),
             scores.Single(score => score.PostId == entity.Id),
             entity.PublishingDate,
             entity.Tags,

@@ -37,7 +37,6 @@ public sealed class PostsModule : TychoModule
     protected override void RegisterServices(IServiceCollection services) 
     {
         services.AddTransient<IPostsFeed, PostsFeed>()
-                .AddTransient<IPosterInfoProvider, PosterInfoProvider>()
                 .AddTransient<IPostingTopicProvider, PostingTopicProvider>()
                 .AddTransient<IPostScoreProvider, ScoreProvider>()
                 .AddTransient<ICommentScoresProvider, ScoreProvider>()

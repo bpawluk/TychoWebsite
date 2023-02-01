@@ -4,7 +4,7 @@ namespace TychoWebsite.Posts.Contract.Model.Posts;
 
 public record NewPost(
     string Id,
-    string AuthorId,
+    Poster Author,
     string Content,
     List<string> Tags,
     string? TopicId = null) : IEntity;

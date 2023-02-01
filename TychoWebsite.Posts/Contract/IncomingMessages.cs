@@ -7,6 +7,6 @@ namespace TychoWebsite.Posts.Contract;
 public record PublishPostCommand(NewPost Post) : ICommand;
 public record GetPostsQuery(string? TopicId, IEnumerable<string>? Tags) : IQuery<IEnumerable<Post>>;
 
-public record PublishCommentCommand() : ICommand;
-public record GetCommentsQuery() : IQuery<IEnumerable<Comment>>;
+public record PublishCommentCommand(NewComment Comment) : ICommand;
+public record GetCommentsQuery(string PostId) : IQuery<IEnumerable<Comment>>;
 
