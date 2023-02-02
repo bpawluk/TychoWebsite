@@ -6,6 +6,11 @@ namespace TychoWebsite.App.Contract.Mapping;
 
 internal class ReactionsMapper
 {
+    public static NewReactionSubjectAvailableEvent MapEvent(PostPublishedEvent eventData)
+    {
+        return new(eventData.PostId);
+    }
+
     public static GetScoreQuery MapQuery(GetArticleScoreQuery queryData)
     {
         return new(queryData.ArticleId);

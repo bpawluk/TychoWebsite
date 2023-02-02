@@ -10,12 +10,22 @@ internal class ReactionsRepository : RepositoryBase<Reaction, ReactionsEntity, S
 {
     public ReactionsRepository() : base(new RepositorySettings(@"mongodb://localhost:27017", "reactionsModule", "reactions")) { }
 
+    public async Task Init(string subjectId, CancellationToken token)
+    {
+        var newReactionsEntity = new ReactionsEntity() 
+        { 
+            Id = subjectId,
+            SenderIds = Array.Empty<string>(),
+            IsArchived = false
+        };
+        await _collection.InsertOneAsync(newReactionsEntity, cancellationToken: token);
+    }
+
     public async Task AddReaction(Reaction reaction, CancellationToken token)
     {
         var filter = Builders<ReactionsEntity>.Filter.Eq(entity => entity.Id, reaction.SubjectId);
-        var update = Builders<ReactionsEntity>.Update.AddToSet(entity => entity.SenderIds, reaction.SenderId)
-                                                     .Set(entity => entity.IsArchived, false);
-        await _collection.UpdateOneAsync(filter, update, new UpdateOptions { IsUpsert = true }, token);
+        var update = Builders<ReactionsEntity>.Update.AddToSet(entity => entity.SenderIds, reaction.SenderId);
+        await _collection.UpdateOneAsync(filter & NotDeleted, update, cancellationToken: token);
     }
 
     public Task<Score> GetScore(string subjectId, CancellationToken token) => GetById(subjectId, token);

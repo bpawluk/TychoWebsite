@@ -14,7 +14,8 @@ public sealed class ReactionsModule : TychoModule
 {
     protected override void DeclareIncomingMessages(IInboxDefinition module, IServiceProvider services) 
     {
-        module.Executes<AddReactionCommand, AddReactionCommandHandler>()
+        module.SubscribesTo<NewReactionSubjectAvailableEvent, NewReactionSubjectAvailableEventHandler>()
+              .Executes<AddReactionCommand, AddReactionCommandHandler>()
               .RespondsTo<GetScoreQuery, Score, GetScoreQueryHandler>()
               .RespondsTo<GetScoresQuery, IEnumerable<Score>, GetScoresQueryHandler>();
     }

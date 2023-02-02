@@ -16,6 +16,8 @@ internal static class PostsConsumer
 {
     public static void Consume(IOutboxConsumer module)
     {
+        module.PassOn<PostPublishedEvent, NewReactionSubjectAvailableEvent, ReactionsModule>(ReactionsMapper.MapEvent);
+
         module.Forward<GetPostingTopicsQuery, IEnumerable<PostingTopic>, GetTopicsQuery, IEnumerable<Topic>, TopicsModule>
             (TopicsMapper.MapQuery, PostsMapper.MapResponse);
 

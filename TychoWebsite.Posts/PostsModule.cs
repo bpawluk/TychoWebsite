@@ -27,7 +27,8 @@ public sealed class PostsModule : TychoModule
 
     protected override void DeclareOutgoingMessages(IOutboxDefinition module, IServiceProvider services) 
     {
-        module.Sends<GetPostingTopicsQuery, IEnumerable<PostingTopic>>()
+        module.Publishes<PostPublishedEvent>()
+              .Sends<GetPostingTopicsQuery, IEnumerable<PostingTopic>>()
               .Sends<GetPostsScoresQuery, IEnumerable<PostScore>>()
               .Sends<GetCommentsScoresQuery, IEnumerable<CommentScore>>();
     }
