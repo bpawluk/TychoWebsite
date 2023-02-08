@@ -7,4 +7,5 @@ internal interface IPostsRepository
     Task CreatePost(NewPost post, CancellationToken token);
     Task<IEnumerable<Post>> GetAllPosts(CancellationToken token);
     Task<IEnumerable<Post>> GetPostsWithTags(IEnumerable<string> tags, CancellationToken token);
+    Task<IEnumerable<Post>> GetPostsWithTopic(string topicId, CancellationToken token);
 }

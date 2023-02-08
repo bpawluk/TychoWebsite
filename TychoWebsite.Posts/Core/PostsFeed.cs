@@ -20,7 +20,13 @@ internal class PostsFeed : IPostsFeed
         if (topicId is not null)
         {
             var topic = await _topicProvider.GetTopic(topicId, token);
-            return await _postsRepository.GetPostsWithTags(topic.Tags, token);
+
+            if (topic.Tags.Any())
+            {
+                return await _postsRepository.GetPostsWithTags(topic.Tags, token);
+            }
+            
+            return await _postsRepository.GetPostsWithTopic(topic.Id, token);
         }
 
         if (tags?.Any() is true) 

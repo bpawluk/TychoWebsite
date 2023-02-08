@@ -29,6 +29,13 @@ internal class PostsRepository : RepositoryBase<NewPost, PostEntity, Post>, IPos
         return await MapAllToModel(entities, token);
     }
 
+    public async Task<IEnumerable<Post>> GetPostsWithTopic(string topicId, CancellationToken token)
+    {
+        var filter = Builders<PostEntity>.Filter.Eq(entity => entity.TopicId, topicId);
+        var entities = await FindEntities(filter, token);
+        return await MapAllToModel(entities, token);
+    }
+
     protected override Task<PostEntity> MapToEntity(NewPost model, CancellationToken token)
     {
         return Task.FromResult(new PostEntity()
