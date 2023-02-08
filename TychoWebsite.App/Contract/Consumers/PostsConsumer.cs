@@ -18,6 +18,8 @@ internal static class PostsConsumer
     {
         module.PassOn<PostPublishedEvent, NewReactionSubjectAvailableEvent, ReactionsModule>(ReactionsMapper.MapEvent);
 
+        module.PassOn<CommentPublishedEvent, NewReactionSubjectAvailableEvent, ReactionsModule>(ReactionsMapper.MapEvent);
+
         module.Forward<GetPostingTopicsQuery, IEnumerable<PostingTopic>, GetTopicsQuery, IEnumerable<Topic>, TopicsModule>
             (TopicsMapper.MapQuery, PostsMapper.MapResponse);
 

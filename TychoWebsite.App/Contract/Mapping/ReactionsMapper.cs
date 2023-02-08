@@ -11,6 +11,11 @@ internal class ReactionsMapper
         return new(eventData.PostId);
     }
 
+    public static NewReactionSubjectAvailableEvent MapEvent(CommentPublishedEvent eventData)
+    {
+        return new(eventData.CommentId);
+    }
+
     public static GetScoreQuery MapQuery(GetArticleScoreQuery queryData)
     {
         return new(queryData.ArticleId);

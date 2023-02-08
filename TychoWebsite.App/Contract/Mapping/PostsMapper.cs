@@ -14,7 +14,7 @@ internal static class PostsMapper
 
     public static IEnumerable<CommentScore> MapToCommentScore(IEnumerable<Score> response)
     {
-        return response.Select(score => new CommentScore(score.Value));
+        return response.Select(score => new CommentScore(score.Id, score.Value));
     }
 
     public static IEnumerable<PostingTopic> MapResponse(IEnumerable<Topic> response)

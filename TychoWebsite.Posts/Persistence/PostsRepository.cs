@@ -52,13 +52,13 @@ internal class PostsRepository : RepositoryBase<NewPost, PostEntity, Post>, IPos
 
     protected override async Task<Post> MapToModel(PostEntity entity, CancellationToken token)
     {
-        var score = await _scoreProvider.GetScore(entity.Id, token);
+        var postScore = await _scoreProvider.GetScore(entity.Id, token);
         var topic = entity.TopicId is null ? null : await _topicProvider.GetTopic(entity.TopicId, token);
         return new Post(
             entity.Id,
             entity.Content,
             new(entity.Author.Id, entity.Author.Name),
-            score,
+            postScore,
             entity.PublishingDate,
             entity.Tags,
             topic);

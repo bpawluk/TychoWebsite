@@ -1,5 +1,6 @@
 ﻿using Tycho;
 using TychoWebsite.Posts.Contract;
+using TychoWebsite.Posts.Contract.Model.Comments;
 using TychoWebsite.Posts.Contract.Model.Posts;
 using TychoWebsite.Posts.Core.Ports;
 
@@ -14,13 +15,23 @@ internal class ScoreProvider : IPostScoreProvider, ICommentScoresProvider
         _thisModule = thisModule;
     }
 
-    public async Task<PostScore> GetScore(string postId, CancellationToken token)
+    async Task<PostScore> IPostScoreProvider.GetScore(string postId, CancellationToken token)
     {
-        return (await GetScores(new[] { postId }, token)).Single();
+        return (await (this as IPostScoreProvider).GetScores(new[] { postId }, token)).Single();
     }
 
-    public Task<IEnumerable<PostScore>> GetScores(IEnumerable<string> postIds, CancellationToken token)
+    Task<IEnumerable<PostScore>> IPostScoreProvider.GetScores(IEnumerable<string> postIds, CancellationToken token)
     {
         return _thisModule.Execute<GetPostsScoresQuery, IEnumerable<PostScore>>(new(postIds), token);
+    }
+
+    async Task<CommentScore> ICommentScoresProvider.GetScore(string commentId, CancellationToken token)
+    {
+        return (await (this as ICommentScoresProvider).GetScores(new[] { commentId }, token)).Single();
+    }
+
+    Task<IEnumerable<CommentScore>> ICommentScoresProvider.GetScores(IEnumerable<string> commentIds, CancellationToken token)
+    {
+        return _thisModule.Execute<GetCommentsScoresQuery, IEnumerable<CommentScore>>(new(commentIds), token);
     }
 }

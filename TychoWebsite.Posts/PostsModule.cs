@@ -4,7 +4,6 @@ using Tycho.Contract;
 using Tycho.Structure;
 using TychoWebsite.Posts.Contract;
 using TychoWebsite.Posts.Contract.Handlers;
-using TychoWebsite.Posts.Contract.Model;
 using TychoWebsite.Posts.Contract.Model.Comments;
 using TychoWebsite.Posts.Contract.Model.Posts;
 using TychoWebsite.Posts.Core;
@@ -28,6 +27,7 @@ public sealed class PostsModule : TychoModule
     protected override void DeclareOutgoingMessages(IOutboxDefinition module, IServiceProvider services) 
     {
         module.Publishes<PostPublishedEvent>()
+              .Publishes<CommentPublishedEvent>()
               .Sends<GetPostingTopicsQuery, IEnumerable<PostingTopic>>()
               .Sends<GetPostsScoresQuery, IEnumerable<PostScore>>()
               .Sends<GetCommentsScoresQuery, IEnumerable<CommentScore>>();
@@ -43,5 +43,10 @@ public sealed class PostsModule : TychoModule
                 .AddTransient<ICommentScoresProvider, ScoreProvider>()
                 .AddSingleton<IPostsRepository, PostsRepository>()
                 .AddSingleton<ICommentsRepository, CommentsRepository>();
+    }
+
+    protected override async Task Startup(IServiceProvider services)
+    {
+        await services.GetRequiredService<ICommentsRepository>().Init();
     }
 }

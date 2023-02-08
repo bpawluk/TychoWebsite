@@ -5,5 +5,5 @@ namespace TychoWebsite.Posts.Contract.Model.Comments;
 public record NewComment(
     string Id,
     string PostId,
-    string AuthorId,
+    Poster Author,
     string Content) : IEntity;

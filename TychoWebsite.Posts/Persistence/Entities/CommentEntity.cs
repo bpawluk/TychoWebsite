@@ -10,5 +10,14 @@ internal class CommentEntity : IDatabaseEntity
     [BsonRepresentation(BsonType.ObjectId)]
     public string Id { get; set; } = null!;
 
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string PostId { get; set; } = null!;
+
+    public PosterEntity Author { get; set; } = null!;
+
+    public string Content { get; set; } = null!;
+
+    public DateTime PublishingDate { get; set; }
+
     public bool IsArchived { get; set; }
 }
