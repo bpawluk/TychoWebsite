@@ -13,12 +13,6 @@ public class ArticlesController : TychoController
     public ArticlesController(IModule tychoApp) : base(tychoApp) { }
 
     [HttpGet]
-    public async Task<IEnumerable<ArticleSummary>> GetArticles()
-    {
-        return await _app.Execute<GetArticlesQuery, IEnumerable<ArticleSummary>>(new());
-    }
-
-    [HttpGet]
     [Route("{articleId}")]
     public async Task<ActionResult<Article>> GetArticle(string articleId)
     {
@@ -32,8 +26,13 @@ public class ArticlesController : TychoController
         }
     }
 
+    [HttpGet]
+    public async Task<IEnumerable<ArticleSummary>> GetArticles()
+    {
+        return await _app.Execute<GetArticlesQuery, IEnumerable<ArticleSummary>>(new());
+    }
+
     [HttpPost]
-    [Route("publish")]
     public async Task<IActionResult> PublishArticle(NewArticle article)
     {
         await _app.Execute<PublishArticleCommand>(new(article));

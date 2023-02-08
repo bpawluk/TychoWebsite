@@ -1,8 +1,18 @@
-﻿using TychoWebsite.Shared.Core;
+﻿using System.Collections.Generic;
+using TychoWebsite.Shared.Core;
 
 namespace TychoWebsite.Topics.Contract.Model;
 
-public record Topic(string Id, string Name, IEnumerable<string> Tags) : IEntity
+public record Topic : IEntity
 {
-    public Topic(string id, string name) : this(id, name, Enumerable.Empty<string>()) { }
+    public string Id { get; } 
+    public string Name { get; } 
+    public IEnumerable<string> Tags { get; } 
+
+    public Topic(string id, string name, IEnumerable<string>? tags = null)
+    {
+        Id = id;
+        Name = name;
+        Tags = tags ?? Enumerable.Empty<string>();
+    }
 }

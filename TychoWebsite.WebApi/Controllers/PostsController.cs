@@ -18,7 +18,6 @@ public class PostsController : TychoController
     }
 
     [HttpPost]
-    [Route("publish")]
     public async Task<IActionResult> PublishPost(NewPost post)
     {
         await _app.Execute<PublishPostCommand>(new(post));

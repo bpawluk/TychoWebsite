@@ -17,7 +17,6 @@ public class CommentsController : TychoController
     }
 
     [HttpPost]
-    [Route("publish")]
     public IActionResult PublishComment(string postId)
     {
         return new OkResult();
