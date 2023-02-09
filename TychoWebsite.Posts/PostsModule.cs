@@ -12,6 +12,7 @@ using TychoWebsite.Posts.Core.Interface;
 using TychoWebsite.Posts.Core.Ports;
 using TychoWebsite.Posts.External;
 using TychoWebsite.Posts.Persistence;
+using TychoWebsite.Shared.Extensions;
 
 namespace TychoWebsite.Posts;
 
@@ -38,7 +39,9 @@ public sealed class PostsModule : TychoModule
 
     protected override void RegisterServices(IServiceCollection services, IConfiguration configuration) 
     {
-        services.AddTransient<IPostsFeed, PostsFeed>()
+        services.AddSingleton(configuration.GetSection<PostsRepositorySettings>()!)
+                .AddSingleton(configuration.GetSection<CommentsRepositorySettings>()!)
+                .AddTransient<IPostsFeed, PostsFeed>()
                 .AddTransient<IPostingTopicProvider, PostingTopicProvider>()
                 .AddTransient<IPostScoreProvider, ScoreProvider>()
                 .AddTransient<ICommentScoresProvider, ScoreProvider>()

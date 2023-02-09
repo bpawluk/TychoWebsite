@@ -14,7 +14,11 @@ public static class Program
 
     private static async Task<WebApplicationBuilder> AddTychoApp(this WebApplicationBuilder builder)
     {
-        var tychoApp = await new AppModule().Build();
+        var tychoApp = await new AppModule()
+            .Configure(configuarionBuilder =>
+            {
+                configuarionBuilder.AddConfiguration(builder.Configuration);
+            }).Build();
         builder.Services.AddSingleton(tychoApp);
         return builder;
     }

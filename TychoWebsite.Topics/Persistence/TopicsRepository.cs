@@ -6,9 +6,11 @@ using TychoWebsite.Topics.Persistence.Entities;
 
 namespace TychoWebsite.Topics.Persistence;
 
+internal record TopicsRepositorySettings : RepositorySettings;
+
 internal class TopicsRepository : RepositoryBase<Topic, TopicEntity, Topic>, ITopicsRepository
 {
-    public TopicsRepository() : base(new RepositorySettings(@"mongodb://localhost:27017", "topicsModule", "topics")) { }
+    public TopicsRepository(TopicsRepositorySettings settings) : base(settings) { }
 
     public Task CreateTopic(Topic topic, CancellationToken token) => InsertOne(topic, token);
 

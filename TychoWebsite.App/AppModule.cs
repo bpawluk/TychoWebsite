@@ -14,6 +14,8 @@ namespace TychoWebsite.App;
 
 public sealed partial class AppModule : TychoModule
 {
+    private IConfiguration? _config;
+
     protected override void DeclareIncomingMessages(IInboxDefinition module, IServiceProvider services) 
     {
         module.ForwardArticlesModuleMessages()
@@ -26,11 +28,16 @@ public sealed partial class AppModule : TychoModule
 
     protected override void IncludeSubmodules(ISubstructureDefinition module, IServiceProvider services)
     {
-        module.AddSubmodule<ArticlesModule>(ArticlesConsumer.Consume)
-              .AddSubmodule<PostsModule>(PostsConsumer.Consume)
-              .AddSubmodule<ReactionsModule>()
-              .AddSubmodule<TopicsModule>();
+        module.AddSubmodule<ArticlesModule>(ArticlesConsumer.Consume, Configure<ArticlesModule>)
+              .AddSubmodule<PostsModule>(PostsConsumer.Consume, Configure<PostsModule>)
+              .AddSubmodule<ReactionsModule>(configurationDefinition: Configure<ReactionsModule>)
+              .AddSubmodule<TopicsModule>(configurationDefinition: Configure<TopicsModule>);
     }
 
-    protected override void RegisterServices(IServiceCollection services, IConfiguration configuration) { }
+    protected override void RegisterServices(IServiceCollection services, IConfiguration configuration)
+    {
+        _config = configuration;
+    }
+
+    private void Configure<T>(IConfigurationBuilder builder) => builder.AddConfiguration(_config!.GetSection(typeof(T).Name));
 }

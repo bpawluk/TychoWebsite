@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Tycho;
 using Tycho.Contract;
 using Tycho.Structure;
+using TychoWebsite.Shared.Extensions;
 using TychoWebsite.Topics.Contract;
 using TychoWebsite.Topics.Contract.Handlers;
 using TychoWebsite.Topics.Contract.Model;
@@ -26,6 +27,7 @@ public sealed class TopicsModule : TychoModule
 
     protected override void RegisterServices(IServiceCollection services, IConfiguration configuration) 
     {
-        services.AddSingleton<ITopicsRepository, TopicsRepository>();
+        services.AddSingleton(configuration.GetSection<TopicsRepositorySettings>()!)
+                .AddSingleton<ITopicsRepository, TopicsRepository>();
     }
 }

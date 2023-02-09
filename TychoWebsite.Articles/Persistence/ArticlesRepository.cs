@@ -5,12 +5,15 @@ using TychoWebsite.Shared.Persistence;
 
 namespace TychoWebsite.Articles.Persistence;
 
+internal record ArticlesRepositorySettings : RepositorySettings;
+
 internal class ArticlesRepository : RepositoryBase<NewArticle, ArticleEntity, Article>, IArticlesRepository
 {
     private readonly IArticleScoreProvider _articleScoreProvider;
 
-    public ArticlesRepository(IArticleScoreProvider articleScoreProvider) 
-        : base(new RepositorySettings(@"mongodb://localhost:27017", "articlesModule", "articles"))
+    public ArticlesRepository(
+        ArticlesRepositorySettings settings, 
+        IArticleScoreProvider articleScoreProvider) : base(settings)
     {
         _articleScoreProvider = articleScoreProvider;
     }

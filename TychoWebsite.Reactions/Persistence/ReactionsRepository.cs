@@ -6,9 +6,11 @@ using TychoWebsite.Topics.Persistence.Entities;
 
 namespace TychoWebsite.Topics.Persistence;
 
+internal record ReactionsRepositorySettings : RepositorySettings;
+
 internal class ReactionsRepository : RepositoryBase<Reaction, ReactionsEntity, Score>, IReactionsRepository
 {
-    public ReactionsRepository() : base(new RepositorySettings(@"mongodb://localhost:27017", "reactionsModule", "reactions")) { }
+    public ReactionsRepository(ReactionsRepositorySettings settings) : base(settings) { }
 
     public async Task Init(string subjectId, CancellationToken token)
     {

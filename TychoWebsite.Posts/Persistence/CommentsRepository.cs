@@ -7,12 +7,15 @@ using TychoWebsite.Shared.Persistence;
 
 namespace TychoWebsite.Posts.Persistence;
 
+internal record CommentsRepositorySettings : RepositorySettings;
+
 internal class CommentsRepository : RepositoryBase<NewComment, CommentEntity, Comment>, ICommentsRepository
 {
     private readonly ICommentScoresProvider _scoreProvider;
 
-    public CommentsRepository(ICommentScoresProvider scoreProvider) 
-        : base(new RepositorySettings(@"mongodb://localhost:27017", "postsModule", "comments")) 
+    public CommentsRepository(
+        CommentsRepositorySettings settings,
+        ICommentScoresProvider scoreProvider) : base(settings) 
     {
         _scoreProvider = scoreProvider;
     }

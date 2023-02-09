@@ -9,6 +9,7 @@ using TychoWebsite.Articles.Contract.Model;
 using TychoWebsite.Articles.Core;
 using TychoWebsite.Articles.External;
 using TychoWebsite.Articles.Persistence;
+using TychoWebsite.Shared.Extensions;
 
 namespace TychoWebsite.Articles;
 
@@ -31,7 +32,8 @@ public sealed class ArticlesModule : TychoModule
 
     protected override void RegisterServices(IServiceCollection services, IConfiguration configuration) 
     {
-        services.AddTransient<IArticleScoreProvider, ArticleScoreProvider>()
+        services.AddSingleton(configuration.GetSection<ArticlesRepositorySettings>()!)
+                .AddTransient<IArticleScoreProvider, ArticleScoreProvider>()
                 .AddSingleton<IArticlesRepository, ArticlesRepository>();
     }
 }

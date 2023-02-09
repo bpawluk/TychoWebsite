@@ -6,13 +6,17 @@ using TychoWebsite.Shared.Persistence;
 
 namespace TychoWebsite.Posts.Persistence;
 
+internal record PostsRepositorySettings : RepositorySettings;
+
 internal class PostsRepository : RepositoryBase<NewPost, PostEntity, Post>, IPostsRepository
 {
     private readonly IPostScoreProvider _scoreProvider;
     private readonly IPostingTopicProvider _topicProvider;
 
-    public PostsRepository(IPostScoreProvider scoreProvider, IPostingTopicProvider topicProvider)
-        : base(new RepositorySettings(@"mongodb://localhost:27017", "postsModule", "posts"))
+    public PostsRepository(
+        PostsRepositorySettings settings,
+        IPostScoreProvider scoreProvider, 
+        IPostingTopicProvider topicProvider) : base(settings)
     {
         _scoreProvider = scoreProvider;
         _topicProvider = topicProvider;
