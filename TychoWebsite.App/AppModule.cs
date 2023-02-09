@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Tycho;
 using Tycho.Contract;
 using Tycho.Structure;
@@ -31,5 +32,5 @@ public sealed partial class AppModule : TychoModule
               .AddSubmodule<TopicsModule>();
     }
 
-    protected override void RegisterServices(IServiceCollection services) { }
+    protected override void RegisterServices(IServiceCollection services, IConfiguration configuration) { }
 }
