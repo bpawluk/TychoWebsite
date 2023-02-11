@@ -4,20 +4,20 @@ using TychoWebsite.Shared.Persistence;
 
 namespace TychoWebsite.Posts.Persistence.Entities;
 
-internal class CommentEntity : IDatabaseEntity
+internal record CommentEntity : IDatabaseEntity
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public string Id { get; set; } = null!;
+    public string Id { get; init; } = default!;
 
     [BsonRepresentation(BsonType.ObjectId)]
-    public string PostId { get; set; } = null!;
+    public string PostId { get; init; } = default!;
 
-    public PosterEntity Author { get; set; } = null!;
+    public PosterEntity Author { get; init; } = default!;
 
-    public string Content { get; set; } = null!;
+    public string Content { get; init; } = default!;
 
-    public DateTime PublishingDate { get; set; }
+    public DateTime PublishingDate { get; init; }
 
-    public bool IsArchived { get; set; }
+    public bool IsArchived { get; init; }
 }

@@ -4,13 +4,13 @@ using TychoWebsite.Shared.Persistence;
 
 namespace TychoWebsite.Topics.Persistence.Entities;
 
-internal class ReactionsEntity : IDatabaseEntity
+internal record ReactionsEntity : IDatabaseEntity
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public string Id { get; set; } = null!;
+    public string Id { get; init; } = default!;
        
-    public IEnumerable<string> SenderIds { get; set; } = Enumerable.Empty<string>();
+    public IEnumerable<string> SenderIds { get; init; } = Enumerable.Empty<string>();
 
-    public bool IsArchived { get; set; }
+    public bool IsArchived { get; init; }
 }

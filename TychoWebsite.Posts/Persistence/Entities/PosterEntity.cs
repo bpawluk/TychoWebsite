@@ -3,10 +3,10 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace TychoWebsite.Posts.Persistence.Entities;
 
-internal class PosterEntity
+internal record PosterEntity
 {
     [BsonRepresentation(BsonType.ObjectId)]
-    public string Id { get; set; } = null!;
+    public string Id { get; init; } = default!;
 
-    public string Name { get; set; } = null!;
+    public string Name { get; init; } = default!;
 }

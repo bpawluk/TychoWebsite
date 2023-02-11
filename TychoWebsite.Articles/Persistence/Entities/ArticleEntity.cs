@@ -4,25 +4,25 @@ using TychoWebsite.Shared.Persistence;
 
 namespace TychoWebsite.Articles.Persistence.Entities;
 
-internal class ArticleEntity : IDatabaseEntity
+internal record ArticleEntity : IDatabaseEntity
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public string Id { get; set; } = null!;
+    public string Id { get; init; } = default!;
 
-    public AuthorEntity Author { get; set; } = null!;
+    public AuthorEntity Author { get; init; } = default!;
 
-    public string Title { get; set; } = null!;
+    public string Title { get; init; } = default!;
 
-    public string Lead { get; set; } = null!;
+    public string Lead { get; init; } = default!;
 
-    public string Body { get; set; } = null!;
+    public string Body { get; init; } = default!;
 
-    public DateTime PublishingDate { get; set; }
+    public DateTime PublishingDate { get; init; }
 
-    public List<string> Tags { get; set; } = new List<string>();
+    public List<string> Tags { get; init; } = new List<string>();
 
-    public bool IsPublished { get; set; }
+    public bool IsPublished { get; init; }
 
-    public bool IsArchived { get; set; }
+    public bool IsArchived { get; init; }
 }

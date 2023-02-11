@@ -3,10 +3,10 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace TychoWebsite.Articles.Persistence.Entities;
 
-internal class AuthorEntity
+internal record AuthorEntity
 {
     [BsonRepresentation(BsonType.ObjectId)]
-    public string Id { get; set; } = null!;
+    public string Id { get; init; } = null!;
 
-    public string Name { get; set; } = null!;
+    public string Name { get; init; } = null!;
 }
