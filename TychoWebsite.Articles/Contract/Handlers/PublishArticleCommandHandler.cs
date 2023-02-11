@@ -19,5 +19,6 @@ internal class PublishArticleCommandHandler : ICommandHandler<PublishArticleComm
     {
         await _thisModule.Execute<CreateArticleTopicCommand>(new(commandData.Article.Id, commandData.Article.Title), cancellationToken);
         await _articlesRepository.CreateArticle(commandData.Article, cancellationToken);
+        _thisModule.Publish<ArticlePublishedEvent>(new(commandData.Article.Id));
     }
 }

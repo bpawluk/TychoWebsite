@@ -24,7 +24,8 @@ public sealed class ArticlesModule : TychoModule
 
     protected override void DeclareOutgoingMessages(IOutboxDefinition module, IServiceProvider services)
     {
-        module.Sends<CreateArticleTopicCommand>()
+        module.Publishes<ArticlePublishedEvent>()
+              .Sends<CreateArticleTopicCommand>()
               .Sends<GetArticleScoreQuery, ArticleScore>();
     }
 

@@ -14,6 +14,8 @@ internal static class ArticlesConsumer
 {
     public static void Consume(IOutboxConsumer module)
     {
+        module.PassOn<ArticlePublishedEvent, NewReactionSubjectAvailableEvent, ReactionsModule>(ReactionsMapper.MapEvent);
+
         module.Forward<CreateArticleTopicCommand, CreateTopicCommand, TopicsModule>(TopicsMapper.MapCommand);
 
         module.Forward<GetArticleScoreQuery, ArticleScore, GetScoreQuery, Score, ReactionsModule>

@@ -21,17 +21,20 @@ public sealed class PostsModule : TychoModule
     protected override void DeclareIncomingMessages(IInboxDefinition module, IServiceProvider services) 
     {
         module.Executes<PublishPostCommand, PublishPostCommandHandler>()
-              .RespondsTo<GetPostsQuery, IEnumerable<Post>, GetPostsQueryHandler>()
-              .Executes<PublishCommentCommand, PublishCommentCommandHandler>()
+              .RespondsTo<GetPostsQuery, IEnumerable<Post>, GetPostsQueryHandler>();
+
+        module.Executes<PublishCommentCommand, PublishCommentCommandHandler>()
               .RespondsTo<GetCommentsQuery, IEnumerable<Comment>, GetCommentsQueryHandler>();
     }
 
     protected override void DeclareOutgoingMessages(IOutboxDefinition module, IServiceProvider services) 
     {
         module.Publishes<PostPublishedEvent>()
-              .Publishes<CommentPublishedEvent>()
-              .Sends<GetPostingTopicsQuery, IEnumerable<PostingTopic>>()
               .Sends<GetPostsScoresQuery, IEnumerable<PostScore>>()
+              .Sends<GetPostingTopicsQuery, IEnumerable<PostingTopic>>();
+              
+
+        module.Publishes<CommentPublishedEvent>()
               .Sends<GetCommentsScoresQuery, IEnumerable<CommentScore>>();
     }
 
