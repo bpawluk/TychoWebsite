@@ -8,11 +8,11 @@ namespace TychoWebsite.Topics.Persistence;
 
 internal record TopicsRepositorySettings : RepositorySettings;
 
-internal class TopicsRepository : RepositoryBase<Topic, TopicEntity, Topic>, ITopicsRepository
+internal class TopicsRepository : RepositoryBase<NewTopic, TopicEntity, Topic>, ITopicsRepository
 {
     public TopicsRepository(TopicsRepositorySettings settings) : base(settings) { }
 
-    public Task CreateTopic(Topic topic, CancellationToken token) => InsertOne(topic, token);
+    public Task CreateTopic(NewTopic topic, CancellationToken token) => InsertOne(topic, token);
 
     public Task<Topic> GetTopic(string topicId, CancellationToken token) => GetById(topicId, token);
 
@@ -23,7 +23,7 @@ internal class TopicsRepository : RepositoryBase<Topic, TopicEntity, Topic>, ITo
         return await MapAllToModel(entities, token);
     }
 
-    protected override Task<TopicEntity> MapToEntity(Topic model, CancellationToken token)
+    protected override Task<TopicEntity> MapToEntity(NewTopic model, CancellationToken token)
     {
         return Task.FromResult(new TopicEntity() { Id = model.Id, Name = model.Name, Tags = model.Tags });
     }

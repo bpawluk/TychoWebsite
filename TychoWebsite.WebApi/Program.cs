@@ -18,7 +18,8 @@ public static class Program
             .Configure(configuarionBuilder =>
             {
                 configuarionBuilder.AddConfiguration(builder.Configuration);
-            }).Build();
+            })
+            .Build();
         builder.Services.AddSingleton(tychoApp);
         return builder;
     }

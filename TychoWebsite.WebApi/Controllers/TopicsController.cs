@@ -12,7 +12,7 @@ public class TopicsController : TychoController
     public TopicsController(IModule tychoApp) : base(tychoApp) { }
 
     [HttpPost]
-    public async Task<IActionResult> CreateTopic(Topic topic)
+    public async Task<IActionResult> CreateTopic(NewTopic topic)
     {
         await _app.Execute<CreateTopicCommand>(new(topic));
         return new OkResult();
