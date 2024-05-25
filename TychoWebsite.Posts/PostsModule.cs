@@ -33,7 +33,6 @@ public sealed class PostsModule : TychoModule
               .Sends<GetPostsScoresQuery, IEnumerable<PostScore>>()
               .Sends<GetPostingTopicsQuery, IEnumerable<PostingTopic>>();
               
-
         module.Publishes<CommentPublishedEvent>()
               .Sends<GetCommentsScoresQuery, IEnumerable<CommentScore>>();
     }
