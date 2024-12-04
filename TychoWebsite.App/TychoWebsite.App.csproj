@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Messaging\Handlers\" />
+    <Folder Include="Messaging\Mappers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TychoWebsite.Learning\TychoWebsite.Learning.csproj" />
+    <ProjectReference Include="..\TychoWebsite.Rating\TychoWebsite.Rating.csproj" />
+    <ProjectReference Include="..\TychoWebsite.Store\TychoWebsite.Store.csproj" />
+  </ItemGroup>
+
+</Project>

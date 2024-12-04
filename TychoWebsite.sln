@@ -1,9 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35507.96 d17.13
+VisualStudioVersion = 17.13.35507.96
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TychoWebsite.Program", "TychoWebsite.Program\TychoWebsite.Program.csproj", "{E994F009-4658-4F03-9244-ABDA5D43D760}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TychoWebsite.App", "TychoWebsite.App\TychoWebsite.App.csproj", "{D4145060-F1D6-42A0-A16E-DD05B7743FD9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TychoWebsite.Store", "TychoWebsite.Store\TychoWebsite.Store.csproj", "{F3C74B7A-6A2A-429A-9993-DD3FD23602A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TychoWebsite.Rating", "TychoWebsite.Rating\TychoWebsite.Rating.csproj", "{D85CB63D-36FF-454A-A297-D3F03CAC61DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TychoWebsite.Courses", "TychoWebsite.Courses\TychoWebsite.Courses.csproj", "{91A08B47-24DF-4291-95E3-3F9449BE52FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TychoWebsite.Students", "TychoWebsite.Students\TychoWebsite.Students.csproj", "{BE185EFE-ED6A-4555-B780-BFA244D5207A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TychoWebsite.Learning", "TychoWebsite.Learning\TychoWebsite.Learning.csproj", "{06B63941-AC2C-4FEE-BB3E-2651F1705B34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +29,40 @@ Global
 		{E994F009-4658-4F03-9244-ABDA5D43D760}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E994F009-4658-4F03-9244-ABDA5D43D760}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E994F009-4658-4F03-9244-ABDA5D43D760}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4145060-F1D6-42A0-A16E-DD05B7743FD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4145060-F1D6-42A0-A16E-DD05B7743FD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4145060-F1D6-42A0-A16E-DD05B7743FD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4145060-F1D6-42A0-A16E-DD05B7743FD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3C74B7A-6A2A-429A-9993-DD3FD23602A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3C74B7A-6A2A-429A-9993-DD3FD23602A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3C74B7A-6A2A-429A-9993-DD3FD23602A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3C74B7A-6A2A-429A-9993-DD3FD23602A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D85CB63D-36FF-454A-A297-D3F03CAC61DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D85CB63D-36FF-454A-A297-D3F03CAC61DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D85CB63D-36FF-454A-A297-D3F03CAC61DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D85CB63D-36FF-454A-A297-D3F03CAC61DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91A08B47-24DF-4291-95E3-3F9449BE52FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91A08B47-24DF-4291-95E3-3F9449BE52FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91A08B47-24DF-4291-95E3-3F9449BE52FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91A08B47-24DF-4291-95E3-3F9449BE52FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE185EFE-ED6A-4555-B780-BFA244D5207A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE185EFE-ED6A-4555-B780-BFA244D5207A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE185EFE-ED6A-4555-B780-BFA244D5207A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE185EFE-ED6A-4555-B780-BFA244D5207A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06B63941-AC2C-4FEE-BB3E-2651F1705B34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06B63941-AC2C-4FEE-BB3E-2651F1705B34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06B63941-AC2C-4FEE-BB3E-2651F1705B34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06B63941-AC2C-4FEE-BB3E-2651F1705B34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F3C74B7A-6A2A-429A-9993-DD3FD23602A0} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{D85CB63D-36FF-454A-A297-D3F03CAC61DD} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{91A08B47-24DF-4291-95E3-3F9449BE52FB} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{BE185EFE-ED6A-4555-B780-BFA244D5207A} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{06B63941-AC2C-4FEE-BB3E-2651F1705B34} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {372CA253-D1AB-407E-BE85-92D4FF85C287}
