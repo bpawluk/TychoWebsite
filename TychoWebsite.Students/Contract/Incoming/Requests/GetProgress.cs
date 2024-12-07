@@ -8,5 +8,5 @@ public record GetProgress(int StudentId) : IRequest<Response>
 {
     public record Response(IImmutableList<Progress> Progress);
 
-    public record Progress(string CourseName, double Value);
+    public record Progress(int CourseId, string CourseName, double Completion);
 }

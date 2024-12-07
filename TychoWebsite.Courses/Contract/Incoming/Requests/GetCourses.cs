@@ -8,5 +8,5 @@ public record GetCourses : IRequest<Response>
 {
     public record Response(IImmutableList<Course> Courses);
 
-    public record Course(Guid Id, string Name, int NumberOfLessons, double Rating);
+    public record Course(int Id, string Name, int NumberOfLessons, double Rating);
 }
