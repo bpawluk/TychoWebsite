@@ -17,7 +17,7 @@ internal class CoursesDbContext : TychoDbContext
     {
         base.OnConfiguring(optionsBuilder);
 
-        var dbPath = Path.Combine(Directory.GetCurrentDirectory(), "TychoWebsite.X.db");
+        var dbPath = Path.Combine(Directory.GetCurrentDirectory(), "SQLite/TychoWebsite.Courses.db");
         optionsBuilder.UseSqlite($"Data Source={dbPath}");
     }
 }

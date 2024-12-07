@@ -12,9 +12,4 @@
     <PackageReference Include="Tycho.Persistence.EFCore" Version="5.0.0-beta" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Core\" />
-    <Folder Include="Messaging\Handlers\" />
-  </ItemGroup>
-
 </Project>

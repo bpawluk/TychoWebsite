@@ -1,15 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Tycho.Persistence.EFCore;
+using TychoWebsite.Rating.Core;
 
 namespace TychoWebsite.Rating.Persistence;
 
 internal class RatingDbContext : TychoDbContext
 {
+    public DbSet<Target> Targets { get; set; } = default!;
+
     public async Task InitDatabase()
     {
         await Database.EnsureDeletedAsync();
         await Database.EnsureCreatedAsync();
-        // add data
+        Targets.AddRange(
+            new Target(1, [3, 4, 5]),
+            new Target(2, [5, 5, 5]),
+            new Target(3, [4, 4, 3]),
+            new Target(4, [1, 5, 5]),
+            new Target(5, [3, 3, 3]));
         await SaveChangesAsync();
     }
 
@@ -17,7 +25,7 @@ internal class RatingDbContext : TychoDbContext
     {
         base.OnConfiguring(optionsBuilder);
 
-        var dbPath = Path.Combine(Directory.GetCurrentDirectory(), "TychoWebsite.X.db");
+        var dbPath = Path.Combine(Directory.GetCurrentDirectory(), "SQLite/TychoWebsite.Rating.db");
         optionsBuilder.UseSqlite($"Data Source={dbPath}");
     }
 }

@@ -1,15 +1,25 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Tycho.Modules;
 using Tycho.Persistence.EFCore;
+using TychoWebsite.Rating.Contract.Incoming.Requests;
+using TychoWebsite.Rating.Contract.Outgoing.Events;
+using TychoWebsite.Rating.Messaging.Handlers;
 using TychoWebsite.Rating.Persistence;
 
 namespace TychoWebsite.Rating;
 
 public class RatingModule : TychoModule
 {
-    protected override void DefineContract(IModuleContract module) { }
+    protected override void DefineContract(IModuleContract module) 
+    {
+        module.Handles<Rate, RateHandler>();
+    }
 
-    protected override void DefineEvents(IModuleEvents module) { }
+    protected override void DefineEvents(IModuleEvents module) 
+    {
+        module.Routes<RatingChanged>()
+              .Exposes();
+    }
 
     protected override void IncludeModules(IModuleStructure module) { }
 

@@ -1,15 +1,25 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Tycho.Modules;
 using Tycho.Persistence.EFCore;
+using TychoWebsite.Students.Contract.Incoming.Events;
+using TychoWebsite.Students.Contract.Incoming.Requests;
+using TychoWebsite.Students.Messaging.Handlers;
 using TychoWebsite.Students.Persistence;
 
 namespace TychoWebsite.Students;
 
 public class StudentsModule : TychoModule
 {
-    protected override void DefineContract(IModuleContract module) { }
+    protected override void DefineContract(IModuleContract module) 
+    {
+        module.Handles<CompleteLesson, CompleteLessonHandler>()
+              .Handles<GetProgress, GetProgress.Response, GetProgressHandler>();
+    }
 
-    protected override void DefineEvents(IModuleEvents module) { }
+    protected override void DefineEvents(IModuleEvents module) 
+    {
+        module.Handles<CourseObtained, CourseObtainedHandler>();
+    }
 
     protected override void IncludeModules(IModuleStructure module) { }
 
