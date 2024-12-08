@@ -1,5 +1,4 @@
-﻿
-namespace TychoWebsite.Courses.Core;
+﻿namespace TychoWebsite.Courses.Core;
 
 internal class Course(int id, string name, ICollection<Lesson> lessons, double rating, decimal price)
 {
