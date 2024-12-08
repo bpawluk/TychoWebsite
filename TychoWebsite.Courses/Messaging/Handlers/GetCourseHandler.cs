@@ -5,16 +5,16 @@ using Tycho.Persistence.EFCore;
 using Tycho.Requests;
 using TychoWebsite.Courses.Contract.Incoming.Requests;
 using TychoWebsite.Courses.Core;
-using static TychoWebsite.Courses.Contract.Incoming.Requests.GetLessons;
+using static TychoWebsite.Courses.Contract.Incoming.Requests.GetCourse;
 
 namespace TychoWebsite.Courses.Messaging.Handlers;
 
-internal class GetLessonsHandler(IUnitOfWork unitOfWork, ILogger<GetLessonsHandler> logger) : IRequestHandler<GetLessons, Response>
+internal class GetCourseHandler(IUnitOfWork unitOfWork, ILogger<GetCourseHandler> logger) : IRequestHandler<GetCourse, Response>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
-    private readonly ILogger<GetLessonsHandler> _logger = logger;
+    private readonly ILogger<GetCourseHandler> _logger = logger;
 
-    public async Task<Response> Handle(GetLessons requestData, CancellationToken cancellationToken)
+    public async Task<Response> Handle(GetCourse requestData, CancellationToken cancellationToken)
     {
         _logger.LogInformation("Processing started");
 
@@ -25,14 +25,15 @@ internal class GetLessonsHandler(IUnitOfWork unitOfWork, ILogger<GetLessonsHandl
 
         if (course is null)
         {
-            throw new InvalidOperationException($"Failed to get lessons from a course with ID {requestData.CourseId}");
+            throw new InvalidOperationException($"Failed to find a course with ID {requestData.CourseId}");
         }
 
-        var lessons = course.Lessons
-            .Select(lesson => new LessonData(lesson.Id, lesson.Name))
-            .ToImmutableList();
+        var courseData = new CourseData(
+            course.Id,
+            course.Name,
+            course.Lessons.Select(lesson => new LessonData(lesson.Id, lesson.Name)).ToImmutableList());
 
         _logger.LogInformation("Processing finished");
-        return new(lessons);
+        return new(courseData);
     }
 }

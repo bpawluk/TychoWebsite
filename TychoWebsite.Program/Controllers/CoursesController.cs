@@ -18,7 +18,12 @@ public class CoursesController(IApp app) : ControllerBase
     {
         var request = new GetCourses();
         var response = await _app.Execute<GetCourses, GetCourses.Response>(request);
-        return Ok(response.Courses.Select(course => new Course(course.Id, course.Name)));
+        return Ok(response.Courses.Select(course => new Course(
+            course.Id, 
+            course.Name, 
+            course.NumberOfLessons, 
+            course.Rating,
+            course.Price)));
     }
 
     [HttpPost]
@@ -29,7 +34,7 @@ public class CoursesController(IApp app) : ControllerBase
         await _app.Execute(request);
         return NoContent();
     }
-    
+
     [HttpPost]
     [Route("{courseId}/rate")]
     public async Task<IActionResult> RateCourse(int courseId, Rating rating)
@@ -39,7 +44,7 @@ public class CoursesController(IApp app) : ControllerBase
         return NoContent();
     }
 
-    public record Course(int Id, string Name);
+    public record Course(int Id, string Name, int NumberOfLessons, double Rating, decimal Price);
 
     public record Rating(int NumberOfStars);
 }

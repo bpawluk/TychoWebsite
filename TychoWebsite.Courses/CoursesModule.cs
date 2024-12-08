@@ -12,7 +12,8 @@ public class CoursesModule : TychoModule
 {
     protected override void DefineContract(IModuleContract module) 
     {
-        module.Handles<GetCourses, GetCourses.Response, GetCoursesHandler>()
+        module.Handles<GetCourse, GetCourse.Response, GetCourseHandler>()
+              .Handles<GetCourses, GetCourses.Response, GetCoursesHandler>()
               .Handles<GetLessons, GetLessons.Response, GetLessonsHandler>();
     }
 

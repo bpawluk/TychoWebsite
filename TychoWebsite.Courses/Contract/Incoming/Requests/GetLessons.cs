@@ -6,7 +6,7 @@ namespace TychoWebsite.Courses.Contract.Incoming.Requests;
 
 public record GetLessons(int CourseId) : IRequest<Response>
 {
-    public record Response(IImmutableList<Lesson> Lessons);
+    public record Response(IImmutableList<LessonData> Lessons);
 
-    public record Lesson(int Id, string Name);
+    public record LessonData(int Id, string Name);
 }

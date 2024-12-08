@@ -3,6 +3,7 @@ using Tycho.Modules;
 using Tycho.Persistence.EFCore;
 using TychoWebsite.Students.Contract.Incoming.Events;
 using TychoWebsite.Students.Contract.Incoming.Requests;
+using TychoWebsite.Students.Contract.Outgoing.Requests;
 using TychoWebsite.Students.Messaging.Handlers;
 using TychoWebsite.Students.Persistence;
 
@@ -14,6 +15,8 @@ public class StudentsModule : TychoModule
     {
         module.Handles<CompleteLesson, CompleteLessonHandler>()
               .Handles<GetProgress, GetProgress.Response, GetProgressHandler>();
+
+        module.Requires<GetCourse, GetCourse.Response>();
     }
 
     protected override void DefineEvents(IModuleEvents module) 

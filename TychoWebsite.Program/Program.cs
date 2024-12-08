@@ -2,11 +2,15 @@ using Tycho;
 using TychoWebsite.App;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
+
+// Register a Tycho application
 await builder.AddTycho<AcademyApp>();
 
 var app = builder.Build();
+
 app.MapOpenApi("/openapi");
 app.UseSwaggerUI(options => 
 {
@@ -14,4 +18,5 @@ app.UseSwaggerUI(options =>
     options.SwaggerEndpoint("/openapi", "Tycho Website");
 });
 app.MapControllers();
+
 app.Run();

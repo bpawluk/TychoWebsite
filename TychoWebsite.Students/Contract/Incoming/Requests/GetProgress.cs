@@ -6,7 +6,7 @@ namespace TychoWebsite.Students.Contract.Incoming.Requests;
 
 public record GetProgress(int StudentId) : IRequest<Response>
 {
-    public record Response(IImmutableList<Progress> Progress);
+    public record Response(IImmutableList<ProgressData> Progress);
 
-    public record Progress(int CourseId, string CourseName, double Completion);
+    public record ProgressData(int CourseId, double Completion);
 }

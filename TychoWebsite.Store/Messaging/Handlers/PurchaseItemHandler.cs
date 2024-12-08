@@ -7,10 +7,10 @@ using TychoWebsite.Store.Core;
 
 namespace TychoWebsite.Store.Messaging.Handlers;
 
-internal class PurchaseItemHandler(IUnitOfWork unitOfWork, ILogger<AddFundsHandler> logger) : IRequestHandler<PurchaseItem>
+internal class PurchaseItemHandler(IUnitOfWork unitOfWork, ILogger<PurchaseItemHandler> logger) : IRequestHandler<PurchaseItem>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
-    private readonly ILogger<AddFundsHandler> _logger = logger;
+    private readonly ILogger<PurchaseItemHandler> _logger = logger;
 
     public async Task Handle(PurchaseItem requestData, CancellationToken cancellationToken)
     {
@@ -35,7 +35,7 @@ internal class PurchaseItemHandler(IUnitOfWork unitOfWork, ILogger<AddFundsHandl
         }
 
         account.Withdraw(item.Price);
-        await _unitOfWork.Publish(new ItemPurchased(account.Id, item.Id, item.Name));
+        await _unitOfWork.Publish(new ItemPurchased(account.Id, item.Id));
         await _unitOfWork.SaveChanges(cancellationToken);
 
         _logger.LogInformation("Processing finished");

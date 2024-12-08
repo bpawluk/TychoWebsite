@@ -1,15 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Tycho.Persistence.EFCore;
+using TychoWebsite.Students.Core;
 
 namespace TychoWebsite.Students.Persistence;
 
 internal class StudentsDbContext : TychoDbContext
 {
+    public DbSet<Student> Students { get; set; } = null!;
+
     public async Task InitDatabase()
     {
         await Database.EnsureDeletedAsync();
         await Database.EnsureCreatedAsync();
-        // add data
+        Students.Add(new Student(1, [new Course(2, [6], [6, 7, 8]), new Course(4, [13], [13, 14])]));
         await SaveChangesAsync();
     }
 

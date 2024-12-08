@@ -14,6 +14,6 @@ internal static class EventMapper
 
     public static StudentsIn.CourseObtained Map(StoreOut.ItemPurchased eventData)
     {
-        return new(eventData.PurchaserId, eventData.ItemId, eventData.ItemName);
+        return new(eventData.PurchaserId, eventData.ItemId);
     }
 }

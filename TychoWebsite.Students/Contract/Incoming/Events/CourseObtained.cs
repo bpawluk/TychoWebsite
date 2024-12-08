@@ -2,4 +2,4 @@
 
 namespace TychoWebsite.Students.Contract.Incoming.Events;
 
-public record CourseObtained(int StudentId, int CourseId, string CourseName) : IEvent;
+public record CourseObtained(int StudentId, int CourseId) : IEvent;

@@ -1,10 +1,10 @@
 ﻿namespace TychoWebsite.Rating.Core;
 
-internal class Target(int id, List<int> ratings)
+internal class Target(int id, ICollection<int> ratings)
 {
     public int Id { get; private set; } = id;
 
-    public List<int> Ratings { get; private set; } = ratings;
+    public ICollection<int> Ratings { get; private set; } = ratings;
 
     public double GetRating()
     {

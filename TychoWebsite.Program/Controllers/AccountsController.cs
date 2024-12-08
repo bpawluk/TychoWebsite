@@ -17,8 +17,8 @@ public class AccountsController(IApp app) : ControllerBase
     {
         var request = new GetProgress(Constants.UserId);
         var response = await _app.Execute<GetProgress, GetProgress.Response>(request);
-        return Ok(response.Progress.Select(progress => new CourseProgress(progress.CourseId, progress.CourseName, progress.Completion)));
+        return Ok(response.Progress.Select(progress => new CourseProgress(progress.CourseId, progress.Completion)));
     }
 
-    public record CourseProgress(int CourseId, string CourseName, double Completion);
+    public record CourseProgress(int CourseId, double Completion);
 }

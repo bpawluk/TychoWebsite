@@ -15,8 +15,8 @@ internal class RatingDbContext : TychoDbContext
         Targets.AddRange(
             new Target(1, [3, 4, 5]),
             new Target(2, [5, 5, 5]),
-            new Target(3, [4, 4, 3]),
-            new Target(4, [1, 5, 5]),
+            new Target(3, [4, 3, 2]),
+            new Target(4, [2, 5, 5]),
             new Target(5, [3, 3, 3]));
         await SaveChangesAsync();
     }
