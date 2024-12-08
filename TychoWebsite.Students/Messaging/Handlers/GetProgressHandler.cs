@@ -30,7 +30,7 @@ internal class GetProgressHandler(IUnitOfWork unitOfWork, ILogger<GetProgressHan
 
         var progress = student.Courses
             .Select(course => new ProgressData(
-                course.Id,
+                course.CourseId,
                 course.GetProgress()))
             .ToImmutableList();
 

@@ -10,7 +10,7 @@ internal class Student(int id, ICollection<Course> courses)
 
     public void AddCourse(Course course)
     {
-        if (!Courses.Any(c => c.Id == course.Id))
+        if (!Courses.Any(course => course.CourseId == course.Id))
         {
             Courses.Add(course);
         }
@@ -18,7 +18,7 @@ internal class Student(int id, ICollection<Course> courses)
 
     public Course GetCourse(int courseId)
     {
-        return Courses.FirstOrDefault(c => c.Id == courseId)
+        return Courses.FirstOrDefault(course => course.CourseId == courseId)
             ?? throw new InvalidOperationException($"Course with ID {courseId} is not owned by the user");
     }
 }
