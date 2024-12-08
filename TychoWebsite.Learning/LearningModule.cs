@@ -1,14 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Tycho.Modules;
 using TychoWebsite.Courses;
-using TychoWebsite.Courses.Contract.Incoming.Events;
-using TychoWebsite.Courses.Contract.Incoming.Requests;
 using TychoWebsite.Learning.Messaging.Mappers;
 using TychoWebsite.Students;
-using TychoWebsite.Students.Contract.Incoming.Events;
-using TychoWebsite.Students.Contract.Incoming.Requests;
-using CoursesIn = TychoWebsite.Courses.Contract.Incoming.Requests;
-using StudentsOut = TychoWebsite.Students.Contract.Outgoing.Requests;
+using CoursesIn = TychoWebsite.Courses.Contract.Incoming;
+using StudentsIn = TychoWebsite.Students.Contract.Incoming;
+using StudentsOut = TychoWebsite.Students.Contract.Outgoing;
 
 namespace TychoWebsite.Learning;
 
@@ -16,19 +13,19 @@ public class LearningModule : TychoModule
 {
     protected override void DefineContract(IModuleContract module) 
     { 
-        module.Forwards<GetCourses, GetCourses.Response, CoursesModule>()
-              .Forwards<GetLessons, GetLessons.Response, CoursesModule>();
+        module.Forwards<CoursesIn.Requests.GetCourses, CoursesIn.Requests.GetCourses.Response, CoursesModule>()
+              .Forwards<CoursesIn.Requests.GetLessons, CoursesIn.Requests.GetLessons.Response, CoursesModule>();
 
-        module.Forwards<CompleteLesson, StudentsModule>()
-              .Forwards<GetProgress, GetProgress.Response, StudentsModule>();
+        module.Forwards<StudentsIn.Requests.CompleteLesson, StudentsModule>()
+              .Forwards<StudentsIn.Requests.GetProgress, StudentsIn.Requests.GetProgress.Response, StudentsModule>();
     }
 
     protected override void DefineEvents(IModuleEvents module) 
     {
-        module.Routes<CourseRatingChanged>()
+        module.Routes<CoursesIn.Events.CourseRatingChanged>()
               .Forwards<CoursesModule>();
 
-        module.Routes<CourseObtained>()
+        module.Routes<StudentsIn.Events.CourseObtained>()
               .Forwards<StudentsModule>();
     }
 
@@ -39,8 +36,8 @@ public class LearningModule : TychoModule
         module.Uses<StudentsModule>(studentsRequests => 
         {
             studentsRequests.ForwardAs<
-                StudentsOut.GetCourse, StudentsOut.GetCourse.Response,
-                CoursesIn.GetCourse, CoursesIn.GetCourse.Response,
+                StudentsOut.Requests.GetCourse, StudentsOut.Requests.GetCourse.Response,
+                CoursesIn.Requests.GetCourse, CoursesIn.Requests.GetCourse.Response,
                 CoursesModule>(
                     RequestMapper.MapRequest,
                     RequestMapper.MapResponse);
